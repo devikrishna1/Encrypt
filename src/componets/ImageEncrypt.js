@@ -1,11 +1,10 @@
-import './ImageEncrypt.css';
 import React, { useState } from 'react';
 import CryptoJS from 'crypto-js';
 
 function ImageEncrypt() {
   const [imageFile, setImageFile] = useState(null);
   const [encryptionKey, setEncryptionKey] = useState('');
-  const [encryptedImage, setEncryptedImage] = useState(null);
+  const [encryptedText, setEncryptedText] = useState('');
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -23,8 +22,19 @@ function ImageEncrypt() {
     const reader = new FileReader();
     reader.onload = (event) => {
       const imageData = event.target.result; // Base64 encoded image
+
+      // Encrypt the image data using AES encryption
       const encrypted = CryptoJS.AES.encrypt(imageData, encryptionKey).toString();
-      setEncryptedImage(encrypted);
+      setEncryptedText(encrypted);
+
+      // Create a downloadable file
+      const blob = new Blob([encrypted], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'encrypted_message.txt';
+      a.click();
+      URL.revokeObjectURL(url);
     };
     reader.readAsDataURL(imageFile); // Read the image file as a data URL
   };
@@ -52,13 +62,13 @@ function ImageEncrypt() {
         />
       </div>
       <button onClick={handleEncrypt}>Encrypt</button>
-      {encryptedImage && (
+      {encryptedText && (
         <div>
-          <h3>Encrypted Image:</h3>
+          <h3>Encrypted Message:</h3>
           <textarea
             readOnly
-            value={encryptedImage}
-            placeholder="Encrypted image data will appear here"
+            value={encryptedText}
+            placeholder="Encrypted message will appear here"
           />
         </div>
       )}

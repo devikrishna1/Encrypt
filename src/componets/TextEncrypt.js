@@ -1,4 +1,3 @@
-import './TextEncrypt.css';
 import React, { useState } from 'react';
 import CryptoJS from 'crypto-js';
 
@@ -16,6 +15,15 @@ function TextEncrypt() {
     // Encrypt the plain text using AES encryption
     const encrypted = CryptoJS.AES.encrypt(plainText, encryptionKey).toString();
     setEncryptedText(encrypted);
+
+    // Create a downloadable file
+    const blob = new Blob([encrypted], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'encrypted_message.txt';
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
