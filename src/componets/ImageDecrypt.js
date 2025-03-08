@@ -1,43 +1,67 @@
-import './ImageEncrypt.css';
 import React, { useState } from 'react';
 import CryptoJS from 'crypto-js';
+import './ImageEncrypt.css';
 
 function ImageDecrypt() {
-  const [encryptedImage, setEncryptedImage] = useState('');
+  const [encryptedFile, setEncryptedFile] = useState(null);
   const [decryptionKey, setDecryptionKey] = useState('');
-  const [decryptedImage, setDecryptedImage] = useState(null);
+  const [decryptedImage, setDecryptedImage] = useState('');
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEncryptedFile(file);
+    }
+  };
 
   const handleDecrypt = () => {
-    if (!encryptedImage || !decryptionKey) {
-      alert('Please enter encrypted image data and decryption key.');
+    if (!encryptedFile || !decryptionKey) {
+      alert('Please upload an encrypted file and enter the decryption key.');
       return;
     }
 
-    try {
-      const bytes = CryptoJS.AES.decrypt(encryptedImage, decryptionKey);
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const fileContent = event.target.result; // Read the file content
+      const { encrypted, timestamp } = JSON.parse(fileContent); // Parse encrypted data and timestamp
+
+      // Define the time window (2 minutes in milliseconds)
+      const timeWindow = 2 * 60 * 1000; // 2 minutes
+
+      // Check if the current time is within the time window
+      const currentTime = Date.now();
+      if (currentTime - timestamp > timeWindow) {
+        alert('Decryption failed. The encrypted data has expired (2-minute limit).');
+        return;
+      }
+
+      // Combine the decryption key with the timestamp
+      const dynamicKey = `${decryptionKey}-${timestamp}`;
+
+      // Decrypt the image data using AES decryption with the dynamic key
+      const bytes = CryptoJS.AES.decrypt(encrypted, dynamicKey);
       const decrypted = bytes.toString(CryptoJS.enc.Utf8);
 
       if (!decrypted) {
-        throw new Error('Decryption failed. Please check your decryption key.');
+        alert('Decryption failed. Please check your decryption key.');
+        return;
       }
 
       setDecryptedImage(decrypted);
-    } catch (error) {
-      console.error('Decryption error:', error);
-      alert(error.message);
-    }
+    };
+    reader.readAsText(encryptedFile); // Read the file as text
   };
 
   return (
     <div>
       <h2>Image Decryption</h2>
       <div>
-        <label htmlFor="encryptedImage">Encrypted Image Data:</label>
-        <textarea
-          id="encryptedImage"
-          placeholder="Enter encrypted image data"
-          value={encryptedImage}
-          onChange={(e) => setEncryptedImage(e.target.value)}
+        <label htmlFor="encryptedFile">Upload Encrypted File:</label>
+        <input
+          type="file"
+          id="encryptedFile"
+          accept=".txt"
+          onChange={handleFileChange}
         />
       </div>
       <div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CryptoJS from 'crypto-js';
+import './TextEncrypt.css';
 
 function TextEncrypt() {
   const [plainText, setPlainText] = useState('');
@@ -12,12 +13,17 @@ function TextEncrypt() {
       return;
     }
 
-    // Encrypt the plain text using AES encryption
-    const encrypted = CryptoJS.AES.encrypt(plainText, encryptionKey).toString();
+    // Get the current timestamp
+    const timestamp = Date.now(); // Current timestamp in milliseconds
+    const dynamicKey = `${encryptionKey}-${timestamp}`; // Combine key and timestamp
+
+    // Encrypt the plain text using AES encryption with the dynamic key
+    const encrypted = CryptoJS.AES.encrypt(plainText, dynamicKey).toString();
     setEncryptedText(encrypted);
 
-    // Create a downloadable file
-    const blob = new Blob([encrypted], { type: 'text/plain' });
+    // Create a downloadable file with the encrypted data and timestamp
+    const fileContent = JSON.stringify({ encrypted, timestamp });
+    const blob = new Blob([fileContent], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;

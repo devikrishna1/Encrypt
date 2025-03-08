@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CryptoJS from 'crypto-js';
+import './ImageEncrypt.css';
 
 function ImageEncrypt() {
   const [imageFile, setImageFile] = useState(null);
@@ -23,16 +24,21 @@ function ImageEncrypt() {
     reader.onload = (event) => {
       const imageData = event.target.result; // Base64 encoded image
 
-      // Encrypt the image data using AES encryption
-      const encrypted = CryptoJS.AES.encrypt(imageData, encryptionKey).toString();
+      // Get the current timestamp
+      const timestamp = Date.now(); // Current timestamp in milliseconds
+      const dynamicKey = `${encryptionKey}-${timestamp}`; // Combine key and timestamp
+
+      // Encrypt the image data using AES encryption with the dynamic key
+      const encrypted = CryptoJS.AES.encrypt(imageData, dynamicKey).toString();
       setEncryptedText(encrypted);
 
-      // Create a downloadable file
-      const blob = new Blob([encrypted], { type: 'text/plain' });
+      // Create a downloadable file with the encrypted data and timestamp
+      const fileContent = JSON.stringify({ encrypted, timestamp });
+      const blob = new Blob([fileContent], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'encrypted_message.txt';
+      a.download = 'encrypted_image.txt';
       a.click();
       URL.revokeObjectURL(url);
     };
