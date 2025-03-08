@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './componets/Login';
+import Signup from './componets/Signup';
+import MainPage from './componets/MainPage';
+import EncryptPage from './componets/EncryptPage';
+import DecryptPage from './componets/DecryptPage';
+import TextEncrypt from './componets/TextEncrypt';
+import ImageEncrypt from './componets/ImageEncrypt';
+import AudioEncrypt from './componets/AudioEncrypt';
+import VideoEncrypt from './componets/VideoEncrypt';
+import TextDecrypt from './componets/TextDecrypt';
+import ImageDecrypt from './componets/ImageDecrypt';
+import AudioDecrypt from './componets/AudioDecrypt';
+import VideoDecrypt from './componets/VideoDecrypt';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/encrypt" element={<EncryptPage />} />
+        <Route path="/decrypt" element={<DecryptPage />} />
+        <Route path="/encrypt/text" element={<TextEncrypt />} />
+        <Route path="/encrypt/image" element={<ImageEncrypt />} />
+        <Route path="/encrypt/audio" element={<AudioEncrypt />} />
+        <Route path="/encrypt/video" element={<VideoEncrypt />} />
+        <Route path="/decrypt/text" element={<TextDecrypt />} />
+        <Route path="/decrypt/image" element={<ImageDecrypt />} />
+        <Route path="/decrypt/audio" element={<AudioDecrypt />} />
+        <Route path="/decrypt/video" element={<VideoDecrypt />} />
+      </Routes>
+    </Router>
   );
 }
 
