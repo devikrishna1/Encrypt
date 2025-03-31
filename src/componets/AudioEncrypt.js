@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CryptoJS from 'crypto-js';
+import './EncryptUi.css';
 
 function AudioEncrypt() {
   const [audioFile, setAudioFile] = useState(null);

@@ -1,0 +1,53 @@
+.container {
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5'); /* Replace with an actual image URL or path */
+    background-size: cover;
+    background-position: center;
+    color: white;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  }
+  
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .nav-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(0, 123, 255, 0.8);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    backdrop-filter: blur(5px);
+  }
+  
+  .nav-button:hover {
+    background-color: rgba(0, 86, 179, 0.8);
+  }
+  
+  @media (max-width: 600px) {
+    nav {
+      flex-direction: column;
+    }
+  
+    .nav-button {
+      width: 100%;
+    }
+  }
+  

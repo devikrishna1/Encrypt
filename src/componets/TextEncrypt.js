@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CryptoJS from 'crypto-js';
-import './TextEncrypt.css';
+import './EncryptUi.css';
 
 function TextEncrypt() {
   const [plainText, setPlainText] = useState('');

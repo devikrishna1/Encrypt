@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CryptoJS from 'crypto-js';
-import './ImageEncrypt.css';
+import './EncryptUi.css';
+
 
 function ImageEncrypt() {
   const [imageFile, setImageFile] = useState(null);
