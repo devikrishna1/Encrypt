@@ -1,0 +1,122 @@
+/* Base Styles */
+.signup-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+  }
+  
+  .signup-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .signup-title {
+    color: #2d3748;
+    font-size: 28px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  
+  .signup-subtitle {
+    color: #718096;
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+  
+  /* Input Fields */
+  .input-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .signup-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+    box-sizing: border-box;
+  }
+  
+  .signup-input:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  }
+  
+  /* Button */
+  .signup-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #4c51bf;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+  }
+  
+  .signup-button:hover {
+    background-color: #434190;
+  }
+  
+  .signup-button:disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+  }
+  
+  /* Footer */
+  .signup-footer {
+    margin-top: 25px;
+    color: #718096;
+    font-size: 14px;
+  }
+  
+  .login-link {
+    color: #4c51bf;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .signup-card {
+      padding: 30px 20px;
+    }
+    
+    .signup-title {
+      font-size: 24px;
+    }
+    
+    .signup-input,
+    .signup-button {
+      padding: 12px;
+    }
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .signup-card {
+    animation: fadeIn 0.6s ease-out;
+  }
