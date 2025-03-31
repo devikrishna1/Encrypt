@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { validateUser } from '../Users';
 import './login.css';
@@ -9,15 +9,33 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Check if user is already logged in
+    const loginTime = localStorage.getItem('loginTime');
+    if (loginTime) {
+      const elapsedTime = Date.now() - parseInt(loginTime, 10);
+      if (elapsedTime < 30 * 60 * 1000) { // 30 minutes
+        navigate('/main'); // Redirect if session is still valid
+      } else {
+        localStorage.removeItem('loginTime'); // Clear expired session
+      }
+    }
+  }, [navigate]);
+
   const handleLogin = () => {
     if (username && password) {
       setIsLoading(true);
-      // Simulate API call
       setTimeout(() => {
         if (validateUser(username, password)) {
+          localStorage.setItem('loginTime', Date.now()); // Save login timestamp
           navigate('/main');
+          setTimeout(() => {
+            localStorage.removeItem('loginTime'); // Auto logout after 30 minutes
+            alert('Session expired. Please log in again.');
+            navigate('/');
+          }, 30 * 60 * 1000); // 30 minutes timeout
         } else {
-          alert('Invalid username or password. Please try again or create an account.');
+          alert('Invalid username or password. Please try again.');
         }
         setIsLoading(false);
       }, 1000);
