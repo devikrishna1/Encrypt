@@ -115,9 +115,7 @@ function VideoDecrypt() {
         </div>
       )}
       
-      <div className="security-note">
-        <p>Note: All decrypted files are processed in your browser and never uploaded to any server.</p>
-      </div>
+  
     </div>
   );
 }

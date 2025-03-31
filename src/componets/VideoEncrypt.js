@@ -109,15 +109,7 @@ function VideoEncrypt() {
       
       {status && <div className={`status ${status.includes('failed') ? 'error' : 'success'}`}>{status}</div>}
       
-      <div className="instructions">
-        <h4>How it works:</h4>
-        <ol>
-          <li>Select a video file (MP4, MOV, etc.)</li>
-          <li>Enter your encryption key</li>
-          <li>Download the encrypted file (.enc extension)</li>
-          <li>The file will auto-expire after 2 minutes</li>
-        </ol>
-      </div>
+      
     </div>
   );
 }
