@@ -1,18 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './componets/Login';
-import Signup from './componets/Signup';
-import MainPage from './componets/MainPage';
-import EncryptPage from './componets/EncryptPage';
-import DecryptPage from './componets/DecryptPage';
-import TextEncrypt from './componets/TextEncrypt';
-import ImageEncrypt from './componets/ImageEncrypt';
-import AudioEncrypt from './componets/AudioEncrypt';
-import VideoEncrypt from './componets/VideoEncrypt';
-import TextDecrypt from './componets/TextDecrypt';
-import ImageDecrypt from './componets/ImageDecrypt';
-import AudioDecrypt from './componets/AudioDecrypt';
-import VideoDecrypt from './componets/VideoDecrypt';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./componets/Login";
+import Signup from "./componets/Signup";
+import MainPage from "./componets/MainPage";
+import EncryptPage from "./componets/EncryptPage";
+import DecryptPage from "./componets/DecryptPage";
+import TextEncrypt from "./componets/TextEncrypt";
+import ImageEncrypt from "./componets/ImageEncrypt";
+import AudioEncrypt from "./componets/AudioEncrypt";
+import VideoEncrypt from "./componets/VideoEncrypt";
+import TextDecrypt from "./componets/TextDecrypt";
+import ImageDecrypt from "./componets/ImageDecrypt";
+import AudioDecrypt from "./componets/AudioDecrypt";
+import VideoDecrypt from "./componets/VideoDecrypt";
+import SelectionPage from "./componets/SelectionPage";
+import SteganographyPage from "./componets/SteganographyPage";
 
 function App() {
   return (
@@ -31,6 +33,9 @@ function App() {
         <Route path="/decrypt/image" element={<ImageDecrypt />} />
         <Route path="/decrypt/audio" element={<AudioDecrypt />} />
         <Route path="/decrypt/video" element={<VideoDecrypt />} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/select" element={<SelectionPage />} />
+        <Route path="/steganography" element={<SteganographyPage />} />
       </Routes>
     </Router>
   );
