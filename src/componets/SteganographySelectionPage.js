@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SelectionPage.css";
 
-function SelectionPage() {
+function SteganographySelectionPage() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -15,17 +15,17 @@ function SelectionPage() {
       <button className="logout-button" onClick={handleLogout}>
         Logout
       </button>
-      <h1>Select a Function</h1>
+      <h1>Select Steganography Type</h1>
       <nav>
-        <Link to="/main">
-          <button className="nav-button">Cryptography</button>
+        <Link to="/steganography">
+          <button className="nav-button">Image</button>
         </Link>
-        <Link to="/steganography-selection">
-          <button className="nav-button">Steganography</button>
-        </Link>
+        {/* <Link to="/steganography-video">
+          <button className="nav-button">Video</button>
+        </Link> */}
       </nav>
     </div>
   );
 }
 
-export default SelectionPage;
+export default SteganographySelectionPage;

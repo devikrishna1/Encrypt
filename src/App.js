@@ -15,6 +15,8 @@ import AudioDecrypt from "./componets/AudioDecrypt";
 import VideoDecrypt from "./componets/VideoDecrypt";
 import SelectionPage from "./componets/SelectionPage";
 import SteganographyPage from "./componets/SteganographyPage";
+import SteganographySelectionPage from "./componets/SteganographySelectionPage";
+import VideoSteganography from "./componets/VideoSteganography";
 
 function App() {
   return (
@@ -36,6 +38,11 @@ function App() {
         <Route path="/main" element={<MainPage />} />
         <Route path="/select" element={<SelectionPage />} />
         <Route path="/steganography" element={<SteganographyPage />} />
+        <Route
+          path="/steganography-selection"
+          element={<SteganographySelectionPage />}
+        />
+        <Route path="/steganography-video" element={<VideoSteganography />} />
       </Routes>
     </Router>
   );
