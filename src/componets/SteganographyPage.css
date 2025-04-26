@@ -54,4 +54,19 @@
   .back-button:hover {
     background-color: #4b5563;
   }
+
+  .download-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .download-btn:hover {
+    background-color: #059669;
+  }
+  
   

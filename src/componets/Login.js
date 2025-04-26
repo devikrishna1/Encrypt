@@ -29,7 +29,7 @@ function Login() {
       setTimeout(() => {
         if (validateUser(username, password)) {
           localStorage.setItem("loginTime", Date.now()); // Save login timestamp
-          navigate("/main");
+          navigate("/select");
           setTimeout(() => {
             localStorage.removeItem("loginTime"); // Auto logout after 30 minutes
             alert("Session expired. Please log in again.");
